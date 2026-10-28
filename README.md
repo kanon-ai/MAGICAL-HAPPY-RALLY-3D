@@ -43,7 +43,7 @@ python tools/play.py --openmsx "C:/path/to/compatible-openmsx/openmsx.exe"
 ### 対応・現在の制限
 
 - 4MiB ASCII16 ROM、R800、RAM 256KiB以上、V9968（内蔵98h I/O）・Geo3D V2、OPLL/MSX-MUSICが必要です。通常のMSX/MSX2やGeo3D V1向けではありません。外付け88h版ではありません。
-- 作者の対応版openMSXで検証しました。**この公開ROMの実機・FPGA・BlueMSX+動作は未検証**です。すべての対応環境での動作を保証しません。
+- 対応版openMSXで検証しました。**この公開ROMの実機・FPGA・BlueMSX+動作は未検証**です。すべての対応環境での動作を保証しません。
 - 同一比較走行で約16.04fps、背面／運転席を含む完走テスト平均約20.53fps。エミュレーター上の計測値であり、実機性能や常時30fpsを意味しません。
 - 車両の接触、追い越し、モデル・テクスチャ、景観には不自然な表現が残ります。後方からの衝突判定はありません。
 - コースは約16.384km。既存道路形状を再利用しており、繰り返しがあります。走行速度で所要時間は変わります。
@@ -89,7 +89,7 @@ See [Running](docs/RUNNING.md) for machine definitions, direct commands and trou
 ### Requirements and limitations
 
 - 4MiB ASCII16 ROM; R800; at least 256KiB RAM; V9968 on the **internal 98h I/O ports**; Geo3D V2; OPLL/MSX-MUSIC. Not for stock MSX/MSX2, Geo3D V1 or the external 88h configuration.
-- Tested in the author's compatible openMSX build. **This release has not been verified on physical hardware, FPGA hardware or BlueMSX+.** Compatibility is not guaranteed.
+- We tested this release in a compatible openMSX build. **This release has not been verified on physical hardware, FPGA hardware or BlueMSX+.** Compatibility is not guaranteed.
 - Approximately 16.04fps in the comparison replay and 20.53fps averaged across a full mixed-view drive. These are emulator measurements, not hardware guarantees or a constant 30fps claim.
 - Collisions, overtaking, models, textures and scenery still contain rough edges. Rear-end collision detection from behind is not implemented.
 - Approximately 16.384km, with reused road geometry and visible repetition. Duration depends on driving speed.
