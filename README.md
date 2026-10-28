@@ -2,7 +2,7 @@
 
 **操作できる開発途中の走行デモ / Playable work-in-progress driving demo**
 
-[ダウンロード / Downloads](https://github.com/kanon-ai/MAGICAL-HAPPY-RALLY-3D/releases/latest) · [English](#english) · [実行方法 / Running](docs/RUNNING.md) · [ビルド / Building](docs/BUILDING.md)
+[ダウンロード / Downloads](https://github.com/kanon-ai/MAGICAL-HAPPY-RALLY-3D/releases/tag/v0.1.0-demo) · [English](#english) · [実行方法 / Running](docs/RUNNING.md) · [ビルド / Building](docs/BUILDING.md)
 
 ![海沿いの背面視点 / Coastal chase view](media/coast.png)
 
