@@ -9,7 +9,7 @@
 
 ## 日本語
 
-音楽は作者の申告に基づき、Sunoの有料プレミアムアカウントで制作し、MSX音楽エディタでOPLL向けに編曲しています。Sunoの2026-10-28確認時点の案内は、有料契約中に正規にダウンロードした曲のゲーム等への商用利用を認めています。これは第三者権利の非侵害、著作権の成立、独占性を保証するものではありません。本リポジトリでは音楽の単体再利用権を提供しません。
+音楽はSunoの有料プレミアムアカウントで制作し、MSX音楽エディタでOPLL向けに編曲しています。Sunoの2026-10-28確認時点の案内は、有料契約中に正規にダウンロードした曲のゲーム等への商用利用を認めています。これは第三者権利の非侵害、著作権の成立、独占性を保証するものではありません。本リポジトリでは音楽の単体再利用権を提供しません。
 
 画像にはAI生成原画と加工データを使用しています。スクリーンショットは本デモの実行映像です。本作は各ハードウェア・ツール・Sunoの開発元による公式作品、認定、保証を意味しません。
 
@@ -17,7 +17,7 @@
 
 ## English
 
-According to the author, the music was created with a paid Suno premium account and arranged for OPLL using an MSX music editor. Suno's guidance checked on 2026-10-28 allows commercial use, including games, for songs lawfully downloaded while subscribed. This does not guarantee non-infringement of third-party rights, copyright eligibility or exclusivity. This repository does not grant standalone reuse rights to the music.
+The music was created with a paid Suno premium account and arranged for OPLL using an MSX music editor. Suno's guidance checked on 2026-10-28 allows commercial use, including games, for songs lawfully downloaded while subscribed. This does not guarantee non-infringement of third-party rights, copyright eligibility or exclusivity. This repository does not grant standalone reuse rights to the music.
 
 Visuals include AI-generated artwork and processed derivatives. Screenshots show this demo running. This project is not an official product, endorsement or warranty from the hardware/tool developers or Suno.
 

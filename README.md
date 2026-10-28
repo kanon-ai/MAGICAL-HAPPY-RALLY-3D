@@ -52,7 +52,7 @@ python tools/play.py --openmsx "C:/path/to/compatible-openmsx/openmsx.exe"
 
 ### 音楽・権利・免責
 
-BGMは **Costal Drive - OPLL arrangement（音量調整版）**。作者の申告に基づき、Sunoの有料プレミアムアカウントを使用して制作した楽曲を、MSX音楽エディタで編曲しOPLL用データにしています。画像素材にはAI生成画像と、その加工データを使用しています。
+BGMは **Costal Drive - OPLL arrangement（音量調整版）**。Sunoの有料プレミアムアカウントを使用して制作した楽曲を、MSX音楽エディタで編曲しOPLL用データにしています。画像素材にはAI生成画像と、その加工データを使用しています。
 
 コードは[MIT License](LICENSE)。素材・音楽・ROM全体の扱いは[別条件](ASSET_LICENSE.md)、制作元と依存関係は[クレジット](THIRD_PARTY_NOTICES.md)をご覧ください。**素材・音楽までMITで自由利用できるという意味ではありません。**
 
@@ -98,7 +98,7 @@ See [Running](docs/RUNNING.md) for machine definitions, direct commands and trou
 
 ### Music, license and disclaimer
 
-Music: **Costal Drive - OPLL arrangement (volume-adjusted version)**. According to the author, the music was created using a paid Suno premium account and arranged for OPLL with an MSX music editor. Visual assets include AI-generated images and edited derivatives.
+Music: **Costal Drive - OPLL arrangement (volume-adjusted version)**. The music was created using a paid Suno premium account and arranged for OPLL with an MSX music editor. Visual assets include AI-generated images and edited derivatives.
 
 Project-authored code is under the [MIT License](LICENSE). [Separate terms](ASSET_LICENSE.md) apply to artwork, music, game data and the combined ROM. See [credits and third-party notices](THIRD_PARTY_NOTICES.md). **The music and artwork are not offered under MIT.**
 
