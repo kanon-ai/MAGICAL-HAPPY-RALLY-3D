@@ -1,0 +1,19 @@
+{
+  "internal_sha256": "3ef176403cb7ad752196dca81f877b99ffddaefd508315676bddcd159c345ea6",
+  "external_sha256": "2bc7c6142d7b08311a37559f9b72f468008a862378f7d1cce67cd8ae0113d243",
+  "rom_bytes": 4194304,
+  "io_operand_changes": 321,
+  "only_port_operands_changed": true,
+  "internal_rebuild_identical": true,
+  "full_route_finished": true,
+  "restart_checked": true,
+  "joins": 15,
+  "both_camera_views": true,
+  "all_profile_and_mesh_records_match": true,
+  "inland_vram_exact": true,
+  "driving_fps": 22.24822362353407,
+  "hardware_tested": false,
+  "bluemsx_tested": false,
+  "recorded_audio_peak": 5164,
+  "recorded_audio_non_silent_and_unclipped": true
+}

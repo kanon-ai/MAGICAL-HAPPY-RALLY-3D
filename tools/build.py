@@ -32,7 +32,10 @@ def main():
     parser.add_argument("--reference", action="store_true", help="Build C-command reference for pixel regression checks")
     parser.add_argument("--test-render-delay", action="store_true", help="TEST ONLY: add 400ms polling delay per rendered frame")
     parser.add_argument("--check-tools", action="store_true", help="Check local tool locations without building")
+    parser.add_argument("--external-88h", action="store_true", help="Build for an external V9968 + Geo3D V2 at 88h")
     args = parser.parse_args()
+    if args.external_88h and args.rom_name == "MAGICAL_HAPPY_RALLY_3D.rom":
+        args.rom_name = "MAGICAL_HAPPY_RALLY_3D_EXTERNAL_88H.rom"
     if args.test_render_delay and args.rom_name == "PUBLIC_ROAD_COCKPIT.rom":
         parser.error("--test-render-delay requires a separate --rom-name; never replace the playable ROM")
     sdcc = Path(os.environ.get("SDCC") or shutil.which("sdcc") or "sdcc")
@@ -43,10 +46,10 @@ def main():
     if args.check_tools:
         print(json.dumps({"python": sys.executable, "sdcc": str(sdcc), "pasmo": str(pasmo)}, indent=2))
         return
-    build = ROOT / ("work/build-reference" if args.reference else "work/build")
-    out = ROOT / ("outputs/reference" if args.reference else "outputs")
+    build = ROOT / ("work/build-reference" if args.reference else ("work/build-external-88h" if args.external_88h else "work/build"))
+    out = ROOT / ("outputs/reference" if args.reference else ("outputs/external-88h" if args.external_88h else "outputs"))
     build.mkdir(parents=True, exist_ok=True)
-    out.mkdir(exist_ok=True)
+    out.mkdir(parents=True, exist_ok=True)
     env = dict(os.environ)
     env["PATH"] = str(sdcc.parent) + os.pathsep + env.get("PATH", "")
 
@@ -67,6 +70,8 @@ def main():
     assert course and COURSE_OFFSET+len(course)<=ROM_BYTES, "Graphics exceed ROM allocation"
     flags = ["-mz80", "--std-sdcc11", "--opt-code-speed", "--no-std-crt0",
              "--code-loc", "0x8000", "--data-loc", "0xE000"]
+    if args.external_88h:
+        flags.append("-DEXTERNAL_V9968")
     if args.reference:
         flags.append("-DREFERENCE_COMMANDS")
     if args.test_render_delay:
@@ -232,6 +237,7 @@ def main():
     manifest = {
         "title": "MAGICAL HAPPY RALLY 3D", "version": "v0.1.0-demo", "working_title": False,
         "file": target.name, "machine": "MSX turbo R + V9968 + Geo3D V2", "mapper": "ASCII16",
+        "io_base": "88h" if args.external_88h else "98h",
         "rom_bytes": len(rom), "allocated_bytes": used, "free_bytes": ROM_BYTES - used,
         "view_ram_code_bytes":areas["_VIEW"][1], "view_ram_address":"2400-3BFF",
         "runtime_code_bytes": areas["_CODE"][1], "runtime_data_bytes": areas["_DATA"][1],

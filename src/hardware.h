@@ -1,5 +1,6 @@
 #ifndef RALLY_HARDWARE_H
 #define RALLY_HARDWARE_H
+#include "io_ports.h"
 typedef unsigned char u8;
 typedef signed char s8;
 typedef unsigned int u16;

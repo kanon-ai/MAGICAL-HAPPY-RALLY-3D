@@ -2,13 +2,17 @@
 
 **操作できる開発途中の走行デモ / Playable work-in-progress driving demo**
 
-[ダウンロード / Downloads](https://github.com/kanon-ai/MAGICAL-HAPPY-RALLY-3D/releases/tag/v0.1.0-demo) · [English](#english) · [実行方法 / Running](docs/RUNNING.md) · [ビルド / Building](docs/BUILDING.md)
+[ダウンロード / Downloads](https://github.com/kanon-ai/MAGICAL-HAPPY-RALLY-3D/releases/tag/v0.1.1-io-demo) · [内蔵98h／外付け88h](docs/RUNNING.md) · [English](#english) · [実行方法 / Running](docs/RUNNING.md) · [ビルド / Building](docs/BUILDING.md)
 
 ![海沿いの背面視点 / Coastal chase view](media/coast.png)
 
 ![内陸の街並み / Inland town](media/town.png)
 
 [約2分の走行動画 / Two-minute driving video](https://github.com/kanon-ai/MAGICAL-HAPPY-RALLY-3D/releases/download/v0.1.0-demo/MAGICAL_HAPPY_RALLY_3D_preview.mp4)
+
+内蔵98h版に加え、外付け88h版も用意しました。操作とゲーム内容は共通です。外付け構成のopenMSXで完走・両視点・景観遷移・再スタートを確認しました。実機は未検証です。[外付け版の実行方法](docs/RUNNING.md#外付けv9968版88h--external-v9968-edition-88h)をご覧ください。
+
+Separate internal-98h and external-88h ROMs are available, with the same controls and game content. The external edition passed a full-route openMSX drive, both camera views, scenery transitions and restart; physical hardware remains unverified. See [Running](docs/RUNNING.md) and [validation](docs/external-88h-validation.json).
 
 ## 日本語
 
@@ -42,7 +46,7 @@ python tools/play.py --openmsx "C:/path/to/compatible-openmsx/openmsx.exe"
 
 ### 対応・現在の制限
 
-- 4MiB ASCII16 ROM、R800、RAM 256KiB以上、V9968（内蔵98h I/O）・Geo3D V2、OPLL/MSX-MUSICが必要です。通常のMSX/MSX2やGeo3D V1向けではありません。外付け88h版ではありません。
+- 4MiB ASCII16 ROM、R800、RAM 256KiB以上、V9968（内蔵98hまたは外付け88h I/O）・Geo3D V2、OPLL/MSX-MUSICが必要です。通常のMSX/MSX2やGeo3D V1向けではありません。接続方法に合うROMを選んでください。
 - 対応版openMSXで検証しました。**この公開ROMの実機・FPGA・BlueMSX+動作は未検証**です。すべての対応環境での動作を保証しません。
 - 同一比較走行で約16.04fps、背面／運転席を含む完走テスト平均約20.53fps。エミュレーター上の計測値であり、実機性能や常時30fpsを意味しません。
 - 車両の接触、追い越し、モデル・テクスチャ、景観には不自然な表現が残ります。後方からの衝突判定はありません。
@@ -88,7 +92,7 @@ See [Running](docs/RUNNING.md) for machine definitions, direct commands and trou
 
 ### Requirements and limitations
 
-- 4MiB ASCII16 ROM; R800; at least 256KiB RAM; V9968 on the **internal 98h I/O ports**; Geo3D V2; OPLL/MSX-MUSIC. Not for stock MSX/MSX2, Geo3D V1 or the external 88h configuration.
+- 4MiB ASCII16 ROM; R800; at least 256KiB RAM; V9968 on the **internal 98h or external 88h I/O ports**; Geo3D V2; OPLL/MSX-MUSIC. Not for stock MSX/MSX2 or Geo3D V1. Select the ROM matching your I/O configuration.
 - We tested this release in a compatible openMSX build. **This release has not been verified on physical hardware, FPGA hardware or BlueMSX+.** Compatibility is not guaranteed.
 - Approximately 16.04fps in the comparison replay and 20.53fps averaged across a full mixed-view drive. These are emulator measurements, not hardware guarantees or a constant 30fps claim.
 - Collisions, overtaking, models, textures and scenery still contain rough edges. Rear-end collision detection from behind is not implemented.

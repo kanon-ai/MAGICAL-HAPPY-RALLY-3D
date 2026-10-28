@@ -3,8 +3,8 @@
  * SCREEN8 palette 16..47 is reserved for the pavement depth ramp.
  */
 #include "road_uv.h"
-__sfr __at(0x9d) road_index;
-__sfr __at(0x9f) road_data;
+__sfr __at(IO_GEO_INDEX) road_index;
+__sfr __at(IO_GEO_DATA) road_data;
 void road_word(u8 index,s16 v){road_index=index;road_data=(u8)v;road_data=(u8)(v>>8);}
 void road_vertex(s16 x,s16 y){
  road_data=(u8)x;road_data=(u8)(x>>8);y=-y;
@@ -14,26 +14,26 @@ void road_vertex(s16 x,s16 y){
 static void road_face(u8 a,u8 b,u8 c,u8 d,u8 color) __naked {
  a;b;c;d;color;
  __asm
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld a,l
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld hl,#2
  add hl,sp
  ld a,(hl)
- out (0x9f),a
+ out (IO_GEO_DATA),a
  inc hl
  ld a,(hl)
- out (0x9f),a
+ out (IO_GEO_DATA),a
  inc hl
  xor a
- out (0x9f),a
- out (0x9f),a
- out (0x9f),a
- out (0x9f),a
- out (0x9f),a
- out (0x9f),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
  ld a,(hl)
- out (0x9f),a
+ out (IO_GEO_DATA),a
  pop hl
  pop de
  inc sp
@@ -120,21 +120,21 @@ row_beach:
  pop de
 row_beach_done:
  ld a,l
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld a,h
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld a,(_row_screen_y)
  add a,d
  ld b,a
  xor a
  sub b
- out (0x9f),a
+ out (IO_GEO_DATA),a
  sbc a,a
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld a,#1
- out (0x9f),a
+ out (IO_GEO_DATA),a
  xor a
- out (0x9f),a
+ out (IO_GEO_DATA),a
  pop hl
  dec e
  jr nz,row_stream
@@ -169,10 +169,10 @@ road_face_stream:
  and #1
  jr nz,road_regular_face
  ld a,e
- out (0x9f),a
- out (0x9f),a
- out (0x9f),a
- out (0x9f),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
  inc hl
  inc hl
  inc hl
@@ -181,17 +181,17 @@ road_face_stream:
 road_regular_face:
  ld a,(hl)
  add a,e
- out (0x9f),a
+ out (IO_GEO_DATA),a
  inc hl
  djnz road_regular_face
 road_face_attributes:
  xor a
- out (0x9f),a
- out (0x9f),a
- out (0x9f),a
- out (0x9f),a
- out (0x9f),a
- out (0x9f),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
+ out (IO_GEO_DATA),a
  ld a,(hl)
  inc hl
  cp #254
@@ -203,7 +203,7 @@ road_face_not_terrain:
  jr nz,road_face_color
  ld a,#15
 road_face_color:
- out (0x9f),a
+ out (IO_GEO_DATA),a
  dec d
  jr nz,road_face_stream
  ret

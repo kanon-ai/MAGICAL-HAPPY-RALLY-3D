@@ -62,16 +62,16 @@ static void car_upload(const u8 *packet) __naked {
  push af
  ld d,a
  ld a,#0x58
- out (0x9d),a
+ out (IO_GEO_INDEX),a
  ld a,(_car_resident_slot)
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld a,#0x6c
- out (0x9d),a
+ out (IO_GEO_INDEX),a
  ld a,(_car_resident_slot+1)
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld a,#0x52
- out (0x9d),a
- ld c,#0x9f
+ out (IO_GEO_INDEX),a
+ ld c,#IO_GEO_DATA
 car_faces_copy:
  ld a,(_car_upload_stride)
  ld b,a
@@ -82,15 +82,15 @@ car_faces_copy:
  push af
  ld d,a
  ld a,#0x65
- out (0x9d),a
+ out (IO_GEO_INDEX),a
  ld a,(_car_resident_slot)
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld a,#0x6e
- out (0x9d),a
+ out (IO_GEO_INDEX),a
  ld a,(_car_resident_slot+1)
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld a,#0x53
- out (0x9d),a
+ out (IO_GEO_INDEX),a
 car_uv_copy:
  ld b,#8
  otir
@@ -99,9 +99,9 @@ car_uv_copy:
  pop af
  ld b,a
  ld a,#0x59
- out (0x9d),a
+ out (IO_GEO_INDEX),a
  ld a,b
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ret
  __endasm;
 }
@@ -239,9 +239,9 @@ project_x_side:
  ld 0(iy),l
  ld 1(iy),h
  ld a,l
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld a,h
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld l,1(ix)
  ld h,#0
  add hl,hl
@@ -273,14 +273,14 @@ project_suspension_done:
  ld (_projection_y_cursor),de
  xor a
  sub l
- out (0x9f),a
+ out (IO_GEO_DATA),a
  sbc a,a
  sub h
- out (0x9f),a
+ out (IO_GEO_DATA),a
  ld a,#1
- out (0x9f),a
+ out (IO_GEO_DATA),a
  xor a
- out (0x9f),a
+ out (IO_GEO_DATA),a
  inc ix
  inc ix
  inc ix
@@ -305,7 +305,7 @@ const u8 *player_vertex_stream;
 static void player_stream_vertices(void) __naked {
  __asm
  ld hl,(_player_vertex_stream)
- ld c,#0x9f
+ ld c,#IO_GEO_DATA
  ld b,#0
  otir
  call _bgm_poll

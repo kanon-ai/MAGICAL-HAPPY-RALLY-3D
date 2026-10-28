@@ -1,6 +1,6 @@
 /* Journey deadline affects the grade only. Geo3D projects roadside beacons. */
-__sfr __at(0x9d) geo_index;
-__sfr __at(0x9f) geo_data;
+__sfr __at(IO_GEO_INDEX) geo_index;
+__sfr __at(IO_GEO_DATA) geo_data;
 volatile u8 geo_capacity,geo_id,checkpoint,timed_out,grade;
 volatile u16 geo_projections,deadline,remaining_seconds;
 u16 rewarded_passes,rewarded_near;

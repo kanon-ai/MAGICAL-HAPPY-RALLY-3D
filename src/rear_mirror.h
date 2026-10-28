@@ -18,7 +18,7 @@ static const u8 mirror_faces[132]={0,1,7,6,0,0,0,0,0,0,15,1,4,10,7,0,0,0,0,0,0,2
 static void mirror_upload(void) __naked {
  __asm
  ld hl,#_mirror_faces
- ld bc,#0x849f
+ ld bc,#((0x8400) | IO_GEO_DATA)
  otir
  ret
  __endasm;

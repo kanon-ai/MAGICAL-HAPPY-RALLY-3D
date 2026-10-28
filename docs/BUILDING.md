@@ -24,3 +24,16 @@ This release includes C/assembly sources and the pre-generated graphics/course d
 
 検証ツール / Verified compiler: SDCC 4.6.0 #16555 (MINGW64).
 Verified ROM SHA-256: `3ef176403cb7ad752196dca81f877b99ffddaefd508315676bddcd159c345ea6`.
+
+
+## 外付け版のビルド / Build the external edition
+
+```powershell
+python tools/build.py --pack-only --external-88h
+```
+
+出力 / Output: `outputs/external-88h/MAGICAL_HAPPY_RALLY_3D_EXTERNAL_88H.rom`.
+
+`src/io_ports.h` でVDPとGeo3DのI/Oポートだけを選択します。ゲーム内容・素材・音楽は共通です。ビルド先を分離し、内蔵版を上書きしません。
+
+`src/io_ports.h` selects the VDP and Geo3D I/O ports. Gameplay, assets and music are shared. The separate output directory preserves the internal edition.

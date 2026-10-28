@@ -5,8 +5,8 @@
 extern u16 traffic_gap[5];
 extern s16 traffic_screen_x[5],traffic_screen_y[5];
 extern u8 traffic_clip[5],traffic_width[5],traffic_visible[5];
-__sfr __at(0x9d) car_index;
-__sfr __at(0x9f) car_data;
+__sfr __at(IO_GEO_INDEX) car_index;
+__sfr __at(IO_GEO_DATA) car_data;
 #define road_index car_index
 #define road_data car_data
 volatile u8 camera_mode;

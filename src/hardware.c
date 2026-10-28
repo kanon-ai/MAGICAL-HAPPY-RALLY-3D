@@ -3,11 +3,11 @@
 #include "palette.h"
 #include "palette_data.h"
 #include "stages.h"
-__sfr __at(0x98) vram;
-__sfr __at(0x99) control;
-__sfr __at(0x9a) pal;
-__sfr __at(0x9b) command;
-__sfr __at(0x9c) unlock;
+__sfr __at(IO_VRAM) vram;
+__sfr __at(IO_CONTROL) control;
+__sfr __at(IO_PALETTE) pal;
+__sfr __at(IO_COMMAND) command;
+__sfr __at(IO_UNLOCK) unlock;
 __sfr __at(0xe6) timer_low;
 __sfr __at(0xe7) timer_high;
 u16 gfx_timer(void){u8 a,b,c;do{a=timer_high;b=timer_low;c=timer_high;}while(a!=c);return ((u16)a<<8)|b;}
@@ -88,36 +88,36 @@ void gfx_fill(u16 x,u16 y,u16 w,u16 h,u8 c) __naked {
  or 7(ix)
  jr z,fill_done
  ld a,#2
- out (0x99),a
+ out (IO_CONTROL),a
  ld a,#0x8f
- out (0x99),a
+ out (IO_CONTROL),a
 fill_wait:
  call _bgm_poll
- in a,(0x99)
+ in a,(IO_CONTROL)
  and #1
  jr nz,fill_wait
  ld a,#36
- out (0x99),a
+ out (IO_CONTROL),a
  ld a,#0x91
- out (0x99),a
+ out (IO_CONTROL),a
  ld a,l
- out (0x9b),a
+ out (IO_COMMAND),a
  ld a,h
- out (0x9b),a
+ out (IO_COMMAND),a
  ld a,e
- out (0x9b),a
+ out (IO_COMMAND),a
  ld a,d
- out (0x9b),a
+ out (IO_COMMAND),a
  push ix
  pop hl
  ld bc,#4
  add hl,bc
- ld bc,#0x059b
+ ld bc,#((0x0500) | IO_COMMAND)
  otir
  xor a
- out (0x9b),a
+ out (IO_COMMAND),a
  ld a,#0xc0
- out (0x9b),a
+ out (IO_COMMAND),a
 fill_done:
  pop ix
  pop de
@@ -157,34 +157,34 @@ blit_aligned:
     ld b,#0x98
 blit_wait:
     call _bgm_poll
-    in a,(0x99)
+    in a,(IO_CONTROL)
     and #1
     jr nz,blit_wait
     push bc
     ld a,#32
-    out (0x99),a
+    out (IO_CONTROL),a
     ld a,#0x91
-    out (0x99),a
+    out (IO_CONTROL),a
     ld a,l
-    out (0x9b),a
+    out (IO_COMMAND),a
     ld a,h
-    out (0x9b),a
+    out (IO_COMMAND),a
     ld a,e
-    out (0x9b),a
+    out (IO_COMMAND),a
     ld a,d
-    out (0x9b),a
+    out (IO_COMMAND),a
     push ix
     pop hl
     ld bc,#4
     add hl,bc
-    ld bc,#0x089b
+    ld bc,#((0x0800) | IO_COMMAND)
     otir
     xor a
-    out (0x9b),a
-    out (0x9b),a
+    out (IO_COMMAND),a
+    out (IO_COMMAND),a
     pop bc
     ld a,b
-    out (0x9b),a
+    out (IO_COMMAND),a
 blit_done:
     pop ix
     pop de
@@ -247,39 +247,39 @@ span_clipped:
     jr z,span_done
 span_wait:
     call _bgm_poll
-    in a,(0x99)
+    in a,(IO_CONTROL)
     and #1
     jr nz,span_wait
     ld a,#36
-    out (0x99),a
+    out (IO_CONTROL),a
     ld a,#0x91
-    out (0x99),a
+    out (IO_CONTROL),a
     ld a,l
-    out (0x9b),a
+    out (IO_COMMAND),a
     xor a
-    out (0x9b),a
+    out (IO_COMMAND),a
     ld a,(_span_y)
-    out (0x9b),a
+    out (IO_COMMAND),a
     ld a,(_span_y+1)
-    out (0x9b),a
+    out (IO_COMMAND),a
     ld a,c
-    out (0x9b),a
+    out (IO_COMMAND),a
     ld a,b
-    out (0x9b),a
+    out (IO_COMMAND),a
     ld a,(_span_height)
-    out (0x9b),a
+    out (IO_COMMAND),a
     xor a
-    out (0x9b),a
+    out (IO_COMMAND),a
     ld hl,#2
     add hl,sp
     ld a,(hl)
     ld c,#0xc0
 span_color:
-    out (0x9b),a
+    out (IO_COMMAND),a
     xor a
-    out (0x9b),a
+    out (IO_COMMAND),a
     ld a,c
-    out (0x9b),a
+    out (IO_COMMAND),a
 span_done:
     pop hl
     inc sp
@@ -293,7 +293,7 @@ static void vaddr(u8 high,u16 low){reg(14,high);control=low;control=0x40|((low>>
 static void upload8k(void) __naked{
     __asm
     ld hl,#0x6000
-    ld c,#0x98
+    ld c,#IO_VRAM
     ld e,#32
 upload_loop:
     ld b,#0
@@ -319,7 +319,7 @@ void gfx_upload_begin(u16 y){gfx_wait();vaddr((u8)(y>>6),(y&63)<<8);}
 void gfx_upload_256(const u8 *data) __naked{
     data;
     __asm
-    ld bc,#0x0098
+    ld bc,#IO_VRAM
     otir
     ret
     __endasm;

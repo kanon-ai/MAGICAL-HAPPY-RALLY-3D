@@ -1,8 +1,8 @@
 #include "hardware.h"
 #include "view.h"
 #include "palette.h"
-__sfr __at(0x9d) road_index;
-__sfr __at(0x9f) road_data;
+__sfr __at(IO_GEO_INDEX) road_index;
+__sfr __at(IO_GEO_DATA) road_data;
 void draw_building(u8 slot,u8 kind,u8 clip){
  u8 j,*p=(u8*)(0x0100+(u16)slot*60),origin=(kind==2)?128:0;
  s16 x,y;

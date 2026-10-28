@@ -43,7 +43,7 @@ $env:OPENMSX = "C:/path/to/compatible-openmsx/openmsx.exe"
 
 - `Unknown machine` / `Unknown extension`：通常版ではなく、必要な機種・Geo3D V2定義がある対応版か確認してください。
 - `Missing ROM`：エミュレーターが要求するBIOSを適法に入手して配置してください。本ゲームROMとBIOSは別物です。
-- 画面が乱れる／真っ黒：Geo3D V2、V9968の内蔵98h I/O、R800機種設定を確認してください。この版は外付け88h用ではありません。
+- 画面が乱れる／真っ黒：Geo3D V2、V9968の内蔵98h I/O、R800機種設定を確認してください。内蔵版を外付け88h構成で使用しないでください。
 - 動作が重い：実験段階であり、場面ごとにfpsが変わります。ゲームが未調整である点はREADMEを参照してください。
 
 実機のフラッシュ手順は提供していません。このROMでの実機・カートリッジ互換性は未検証です。
@@ -76,6 +76,29 @@ Press Space to start. Space/Up accelerates, Left/Right steers, X/Down brakes and
 
 ### Troubleshooting
 
-Unknown machine/extension means your emulator lacks the required definitions. Missing ROM errors refer to legally obtained system BIOS files, not necessarily the game ROM. A corrupt or blank screen may indicate the wrong Geo3D version, V9968 I/O configuration or CPU/machine. This ROM uses internal 98h ports, not external 88h. Frame rate varies by scene; see the prototype limitations in README.
+Unknown machine/extension means your emulator lacks the required definitions. Missing ROM errors refer to legally obtained system BIOS files, not necessarily the game ROM. A corrupt or blank screen may indicate the wrong Geo3D version, V9968 I/O configuration or CPU/machine. Use the matching internal 98h or external 88h ROM. Frame rate varies by scene; see the prototype limitations in README.
 
 No hardware flashing instructions are provided. This release's physical hardware and cartridge compatibility are unverified.
+
+
+## 外付けV9968版（88h） / External V9968 edition (88h)
+
+内蔵98h版と外付け88h版を別のROMで提供します。外付け版は `rom/MAGICAL_HAPPY_RALLY_3D_EXTERNAL_88H.rom` です。**V9968は88h〜8Ch、Geo3D V2は8Dh/8Fh**を使用します。実機では外付けV9968側の映像出力を使用する構成です。ただし、この公開ROMの実機・FPGA・BlueMSX+での動作は未検証です。
+
+対応版openMSXで `Panasonic_FS-A1ST`、`HRA_V9968`、`geo3d88` を使用します。通常のMSX本体側VDPと外付けV9968が共存します。`geo3d88` は外付けVDP（V9968）に接続する設定が必要です。
+
+```powershell
+python tools/play.py --external-88h --openmsx "C:/path/to/compatible-openmsx/openmsx.exe"
+```
+
+`OPENMSX` を設定済みなら `PLAY_EXTERNAL_88H.cmd` でも起動できます。ランチャーは外付け側の映像を選択します。
+
+Pythonを使わない場合 / Without Python:
+
+```powershell
+& "C:/path/to/compatible-openmsx/openmsx.exe" -machine Panasonic_FS-A1ST -ext HRA_V9968 -ext geo3d88 -cart rom/MAGICAL_HAPPY_RALLY_3D_EXTERNAL_88H.rom -romtype ASCII16 -script tools/play-external.tcl
+```
+
+If the screen shows the host MSX instead of the game, select **V9968** as openMSX's video source. The provided external launcher does this automatically. Required machine and extension definitions must be supplied by your compatible emulator installation.
+
+The external ROM uses V9968 ports **88h–8Ch** and Geo3D V2 ports **8Dh/8Fh**; the original ROM uses the internal 98h connection. Keep the ROM and emulator/board I/O configuration matched. The external version is for the cartridge VDP output, not the host's internal VDP output. Physical hardware, FPGA and BlueMSX+ remain unverified for this ROM.
