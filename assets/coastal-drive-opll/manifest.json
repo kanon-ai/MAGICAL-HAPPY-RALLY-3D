@@ -1,0 +1,19 @@
+{
+  "song_bytes": 10553,
+  "uncompressed_opll_bytes": 15243,
+  "original_game_bin_bytes": 45289,
+  "frames": 7624,
+  "hz": 60,
+  "loop": false,
+  "writes": 8820,
+  "macros": 3,
+  "max_depth": 2,
+  "max_commands_per_frame": 37,
+  "decoded_trace_matches_reference": true,
+  "software_vibrato_omitted": true,
+  "vibrato_notes": 0,
+  "driver_bytes": 301,
+  "ram_bytes": 35,
+  "bank_bytes": 16384,
+  "data_limit_bytes": 15872
+}

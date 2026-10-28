@@ -1,0 +1,17 @@
+{
+  "rom_sha256": "3ef176403cb7ad752196dca81f877b99ffddaefd508315676bddcd159c345ea6",
+  "ticks": 11401,
+  "opll_register_writes": 13546,
+  "source_trace_matches": true,
+  "whole_song_loops": 1,
+  "update_hz": 59.99996647620495,
+  "max_tick_gap_ms": 22.88028227051342,
+  "max_lateness_ms": 6.226489679554245,
+  "min_address_wait_us": 9.498413902520042,
+  "min_data_recovery_us": 36.03809980745609,
+  "pcm_peak": 5210,
+  "pcm_rms": 1275.678469262272,
+  "audio_seconds": 190.0088888888889,
+  "source_song_sha256": "aab39e84e82f3c8c01444e08592b7734a27a90a01d86ddbbdd129b12c627ec01",
+  "source_zip_files_preserved": true
+}
